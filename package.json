@@ -1,0 +1,23 @@
+{
+  "name": "react-resource",
+  "version": "0.0.1",
+  "description": "",
+  "main": "resource.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonila/react-resource.git"
+  },
+  "author": "Toni Lahnalampi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tonila/react-resource/issues"
+  },
+  "homepage": "https://github.com/tonila/react-resource#readme",
+  "dependencies": {
+    "q": "^1.2.0",
+    "q-reqwest": "^0.1.3"
+  }
+}
