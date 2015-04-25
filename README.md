@@ -2,6 +2,8 @@
 
 Fork of angular resource for react
 
+WORK IN PROGRESS!
+
 ## License ##
 
 MIT
