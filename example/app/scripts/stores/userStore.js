@@ -23,7 +23,15 @@ var UserStore = Reflux.createStore({
   },
 
   loadUsersSuccess(users) {
+    var self = this;
     console.log(users);
+    users.forEach(function(u) {
+      u.onDelete = function() {
+        u.$remove();
+        users.splice(users.indexOf(u), 1);
+        self.triggerUsers();
+      }
+    })
     this.users = users;
 
     this.triggerUsers();
