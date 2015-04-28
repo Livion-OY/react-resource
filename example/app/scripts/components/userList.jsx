@@ -1,4 +1,5 @@
 import React from 'react';
+import UserRow from 'components/userRow.jsx';
 
 class UserList extends React.Component {
 
@@ -7,15 +8,19 @@ class UserList extends React.Component {
   }
 
   render() {
-    var users = this.props.users.map(user => <li key={ user.id }>{ user.firstname + ' ' + user.lastname }</li>);
+    var users = this.props.users.map(user => <UserRow key={ user.id } user={user} /> );
     var loading = this.props.loading ? <div className="loading-label">Loading...</div> : '';
 
     return (
       <div>
         { loading }
-        <ul>
-          { users }
-        </ul>
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+            { users }
+          </tbody>
+        </table>
       </div>
     );
   }

@@ -12,6 +12,7 @@
   "dependencies": {
     "body-parser": "^1.12.3",
     "express": "^4.12.3",
+    "node-uuid": "^1.4.3",
     "react": "^0.13.1",
     "react-router": "^0.13.2",
     "reflux": "^0.2.7"
