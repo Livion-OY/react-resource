@@ -571,7 +571,7 @@ var resource = function() {
       };
 
 
-      Resource.prototype['$' + name] = function(params, success, error) {
+      Resource.prototype[name] = function(params, success, error) {
         if (isFunction(params)) {
           error = success; success = params; params = {};
         }

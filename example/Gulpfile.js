@@ -64,7 +64,7 @@ gulp.task('fonts', function() {
 
 
 // watch styl, html and js file changes
-gulp.task('watch', function() {
+gulp.task('watch', ['build'], function() {
   gulp.watch(app + 'stylus/*.styl', ['styles']);
   gulp.watch(app + 'index.html', ['html']);
   gulp.watch(app + 'scripts/**/*.js', ['scripts']);
@@ -89,7 +89,7 @@ gulp.task('backend', function () {
 });
 
 // by default build project and then watch files in order to trigger livereload
-gulp.task('default', ['backend', 'build', 'watch']);
+gulp.task('default', ['backend', 'watch']);
 
 // waits until clean is finished then builds the project
 gulp.task('build', ['clean'], function() {
