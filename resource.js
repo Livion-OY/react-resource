@@ -278,8 +278,7 @@ function extend(dst) {
 
 function isDefined(value) {return typeof value !== 'undefined';}
 
-var q = require('q');
-var http = require('reqwest');
+var request = require('superagent-promise');
 
 var resource = function() {
   var provider = this;
@@ -502,17 +501,18 @@ var resource = function() {
             httpConfig[key] = copy(value);
           }
         });
+
         if (hasBody) httpConfig.data = data;
-        if (httpConfig.method === 'POST' || httpConfig.method === 'PUT') {
-          httpConfig.contentType = 'application/json';
-          httpConfig.data = JSON.stringify(httpConfig.data);
-        }
+
         route.setUrlParams(httpConfig,
           extend({}, extractParams(data, action.params || {}), params),
           action.url);
 
-        var promise = http(httpConfig).then(function(response) {
-          var data = response;
+        var promise = request(httpConfig.method, httpConfig.url)
+          .send(httpConfig.data)
+          .end()
+          .then(function(response) {
+          var data = response.body;
 
           if (data) {
             // Need to convert action.isArray to boolean in case it is undefined

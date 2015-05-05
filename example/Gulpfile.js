@@ -69,6 +69,7 @@ gulp.task('watch', function() {
   gulp.watch(app + 'index.html', ['html']);
   gulp.watch(app + 'scripts/**/*.js', ['scripts']);
   gulp.watch(app + 'scripts/**/*.jsx', ['scripts']);
+  gulp.watch('../resource.js', ['scripts']);
 });
 
 // remove bundels
@@ -83,7 +84,7 @@ gulp.task('backend', function () {
   nodemon({
     script: 'server.js',
     ext: 'js',
-    ignore: ['app/**/*']
+    ignore: ['app/**/*', 'dist/**/*']
   });
 });
 

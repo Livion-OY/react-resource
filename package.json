@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/tonila/react-resource#readme",
   "dependencies": {
+    "promise": "^7.0.1",
     "q": "^1.2.0",
-    "reqwest": "^1.1.5"
+    "superagent-promise": "^0.2.0"
   },
   "devDependencies": {
     "jasmine-node": "^1.14.5",

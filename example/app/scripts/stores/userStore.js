@@ -15,11 +15,15 @@ var UserStore = Reflux.createStore({
   },
 
   loadUsers() {
+    var self = this;
     console.log('loadUsers');
     this.trigger({
       loading: true
     });
-    users.query(this.loadUsersSuccess);
+    // this enables source maps to load before query is called
+    setTimeout(function() {
+      users.query(self.loadUsersSuccess);
+    }, 100);
   },
 
   loadUsersSuccess(users) {
