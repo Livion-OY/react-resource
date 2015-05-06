@@ -8,7 +8,7 @@ class UserList extends React.Component {
   }
 
   render() {
-    var users = this.props.users.map(user => <UserRow key={ user.id } user={user} /> );
+    var users = this.props.users.map(user => <UserRow key={ user.id } user={ user } onClick={ this.props.onRemove } /> );
     var loading = this.props.loading ? <div className="loading-label">Loading...</div> : '';
 
     return (

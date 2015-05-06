@@ -1,9 +1,10 @@
 import Reflux from 'reflux';
 
 var UserActions = Reflux.createActions([
-  'loadUsers',
-  'loadUsersSuccess',
-  'loadUsersError'
+  'query',
+  'save',
+  'remove',
+  'error'
 ]);
 
 export default UserActions;

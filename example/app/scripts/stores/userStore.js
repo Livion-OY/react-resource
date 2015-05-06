@@ -9,51 +9,42 @@ var UserStore = Reflux.createStore({
   init() {
     this.users = [];
 
-    this.listenTo(UserActions.loadUsers, this.loadUsers);
-    this.listenTo(UserActions.loadUsersSuccess, this.loadUsersSuccess);
-    this.listenTo(UserActions.loadUsersError, this.loadUsersError);
+    this.listenTo(UserActions.query, this.query);
+    this.listenTo(UserActions.remove, this.remove);
+    this.listenTo(UserActions.save, this.save);
   },
 
-  loadUsers() {
+  query() {
     var self = this;
     console.log('loadUsers');
     this.trigger({
       loading: true
     });
-    // this enables source maps to load before query is called
-    setTimeout(function() {
-      users.query(self.loadUsersSuccess);
-    }, 100);
-  },
-
-  loadUsersSuccess(users) {
-    var self = this;
-    console.log(users);
-    users.forEach(function(u) {
-      u.onDelete = function() {
-        u.remove();
-        users.splice(users.indexOf(u), 1);
-        self.triggerUsers();
-      }
-    })
-    this.users = users;
-
-    this.triggerUsers();
-  },
-
-  triggerUsers() {
-    this.trigger({
-      users : this.users,
-      loading: false
+    users.query(function(users) {
+      self.users = users;
+      self.trigger({users: self.users, loading: false});
     });
   },
 
-  loadUsersError(error) {
-    this.trigger({
-      error : error,
-      loading: false
-    });
-  }
+  remove(user) {
+    user.remove();
+    var users = this.users;
+    users.splice(users.indexOf(user), 1);
+    this.trigger({users: users, loading: false});
+  },
+
+  save(user) {
+    if (!(user instanceof Resource)) {
+      user = new users(user);
+      this.users.push(user);
+    }
+    user.save();
+    this.trigger({users: this.users});
+  },
+
+  /*error() {
+    // TODO
+  }*/
 
 });
 
